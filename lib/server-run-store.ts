@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import type { Run } from "@/lib/types";
 
-const DATA_DIR = path.join(process.cwd(), ".runtime");
+const DATA_DIR = process.env.VERCEL ? path.join("/tmp", ".runtime") : path.join(process.cwd(), ".runtime");
 const RUNS_FILE = path.join(DATA_DIR, "runs.json");
 
 let writeQueue: Promise<void> = Promise.resolve();
