@@ -66,11 +66,20 @@ export async function POST(request: Request) {
     result
   };
 
-  await saveRunServer(run);
+  let persisted = true;
+  try {
+    await saveRunServer(run);
+  } catch {
+    // Some serverless runtimes do not allow app-directory writes.
+    // Return the run payload so the client can persist it locally.
+    persisted = false;
+  }
 
   return NextResponse.json({
     run_id: run.run_id,
     overall: run.result.overall,
-    artifact_bias_label: run.result.artifact_bias_label
+    artifact_bias_label: run.result.artifact_bias_label,
+    persisted,
+    run
   });
 }

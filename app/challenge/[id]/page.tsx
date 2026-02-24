@@ -2,10 +2,11 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import challenges from "@/data/challenges.json";
-import type { Challenge, ChatMessage } from "@/lib/types";
+import type { Challenge, ChatMessage, Run } from "@/lib/types";
 import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
 import { useParams, useRouter } from "next/navigation";
+import { saveRun } from "@/lib/storage";
 
 function nowIso() {
   return new Date().toISOString();
@@ -277,7 +278,10 @@ export default function ChallengePage() {
         throw new Error("Backend score failed");
       }
 
-      const data = await response.json() as { run_id: string };
+      const data = await response.json() as { run_id: string; run?: Run; persisted?: boolean };
+      if (data.run) {
+        saveRun(data.run);
+      }
       router.push(`/results/${data.run_id}`);
     } catch {
       setError("Could not score on backend. Please try again.");
