@@ -66,14 +66,7 @@ export async function POST(request: Request) {
     result
   };
 
-  let persisted = true;
-  try {
-    await saveRunServer(run);
-  } catch {
-    // Some serverless runtimes do not allow app-directory writes.
-    // Return the run payload so the client can persist it locally.
-    persisted = false;
-  }
+  const persisted = await saveRunServer(run);
 
   return NextResponse.json({
     run_id: run.run_id,
