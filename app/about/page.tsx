@@ -13,7 +13,7 @@ export default function AboutPage() {
             Anthropic AI Fluency Index report.
           </p>
           <p className="mt-3 text-sm text-neutral-700">
-            It is an independent coaching tool, not a replication of Anthropic's research methodology or benchmark scores. The MVP uses heuristic signal
+            It is an independent coaching tool, not a replication of Anthropic&apos;s research methodology or benchmark scores. The MVP uses heuristic signal
             detection over your prompts, extracts evidence quotes, and scores dimensions with Discernment weighted higher.
           </p>
         </Card>
