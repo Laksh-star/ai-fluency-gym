@@ -1,0 +1,204 @@
+{
+  "dimensions": {
+    "D1": {
+      "name": "Description",
+      "weight": 0.22
+    },
+    "D2": {
+      "name": "Delegation",
+      "weight": 0.22
+    },
+    "D3": {
+      "name": "Discernment",
+      "weight": 0.34
+    },
+    "D4": {
+      "name": "Diligence",
+      "weight": 0.22
+    }
+  },
+  "artifact_bias": {
+    "formula": "(D1 + D2) - D3",
+    "thresholds": {
+      "high": 15,
+      "medium": 7
+    }
+  },
+  "behaviors": [
+    {
+      "id": "D1.goal_clarity",
+      "dimension": "D1",
+      "name": "Clarifies goal & success criteria",
+      "weight": 3,
+      "heuristic_patterns": [
+        "success",
+        "goal",
+        "trying to achieve",
+        "outcome",
+        "deliverable"
+      ],
+      "min_evidence_words": 8
+    },
+    {
+      "id": "D1.constraints_format",
+      "dimension": "D1",
+      "name": "States constraints (audience/tone/format)",
+      "weight": 3,
+      "heuristic_patterns": [
+        "format",
+        "table",
+        "json",
+        "bullets",
+        "word count",
+        "tone",
+        "audience",
+        "16:9",
+        "4:5"
+      ],
+      "min_evidence_words": 6
+    },
+    {
+      "id": "D1.examples",
+      "dimension": "D1",
+      "name": "Provides examples or references",
+      "weight": 2,
+      "heuristic_patterns": [
+        "for example",
+        "like this",
+        "similar to",
+        "sample",
+        "reference"
+      ],
+      "min_evidence_words": 8
+    },
+    {
+      "id": "D2.steps_plan",
+      "dimension": "D2",
+      "name": "Breaks task into steps",
+      "weight": 2,
+      "heuristic_patterns": [
+        "step",
+        "plan",
+        "first",
+        "then",
+        "next",
+        "phase"
+      ],
+      "min_evidence_words": 6
+    },
+    {
+      "id": "D2.options_tradeoffs",
+      "dimension": "D2",
+      "name": "Requests options + tradeoffs",
+      "weight": 2,
+      "heuristic_patterns": [
+        "option",
+        "compare",
+        "tradeoff",
+        "pros and cons",
+        "A vs B"
+      ],
+      "min_evidence_words": 6
+    },
+    {
+      "id": "D3.ask_reasoning",
+      "dimension": "D3",
+      "name": "Asks for rationale (high-level)",
+      "weight": 3,
+      "heuristic_patterns": [
+        "why",
+        "rationale",
+        "walk me through",
+        "explain your reasoning",
+        "how did you arrive"
+      ],
+      "min_evidence_words": 6
+    },
+    {
+      "id": "D3.missing_context",
+      "dimension": "D3",
+      "name": "Identifies missing context / asks clarifying questions",
+      "weight": 4,
+      "heuristic_patterns": [
+        "what do you need",
+        "missing",
+        "assumptions",
+        "clarify",
+        "before you answer",
+        "questions for me"
+      ],
+      "min_evidence_words": 6
+    },
+    {
+      "id": "D3.fact_check_sources",
+      "dimension": "D3",
+      "name": "Requests verification / sources for factual claims",
+      "weight": 4,
+      "heuristic_patterns": [
+        "fact-check",
+        "verify",
+        "sources",
+        "citations",
+        "credible sources",
+        "evidence"
+      ],
+      "min_evidence_words": 5
+    },
+    {
+      "id": "D3.edge_cases",
+      "dimension": "D3",
+      "name": "Tests edge cases / failure modes",
+      "weight": 3,
+      "heuristic_patterns": [
+        "edge case",
+        "failure mode",
+        "test case",
+        "counterexample",
+        "what could go wrong"
+      ],
+      "min_evidence_words": 6
+    },
+    {
+      "id": "D4.iteration_refinement",
+      "dimension": "D4",
+      "name": "Iterates and refines across turns",
+      "weight": 3,
+      "heuristic_patterns": [
+        "revise",
+        "rewrite",
+        "shorter",
+        "improve",
+        "another version",
+        "tighten"
+      ],
+      "min_evidence_words": 3
+    },
+    {
+      "id": "D4.uncertainty_limits",
+      "dimension": "D4",
+      "name": "Asks for uncertainty/limitations",
+      "weight": 2,
+      "heuristic_patterns": [
+        "uncertain",
+        "limitations",
+        "what are you unsure",
+        "confidence level"
+      ],
+      "min_evidence_words": 5
+    },
+    {
+      "id": "D4.verification_checklist",
+      "dimension": "D4",
+      "name": "Requests a verification checklist / final QA pass",
+      "weight": 3,
+      "heuristic_patterns": [
+        "checklist",
+        "QA",
+        "verify step",
+        "review pass",
+        "before we ship"
+      ],
+      "min_evidence_words": 6
+    }
+  ]
+}

@@ -1,0 +1,398 @@
+[
+  {
+    "id": "research.claim.01",
+    "track": "Research/Fact-check",
+    "title": "Check a claim with evidence + uncertainty",
+    "brief": "A founder says: 'AI agents cut ops costs by 40% in 90 days.' Assess credibility, what data you'd need, and craft a cautious executive summary.",
+    "success_criteria": [
+      "Asks clarifying questions about context (industry, baseline, definition of 'ops costs')",
+      "Requests evidence or proposes verification steps",
+      "States uncertainty and what would change the conclusion",
+      "Produces an executive summary + recommended next actions"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Definition trap",
+        "reveal_if_user_asks_any": [
+          "what counts as ops costs",
+          "define ops costs",
+          "what is included"
+        ],
+        "content": "In their numbers, 'ops costs' excludes contractor spend and vendor tools. Including those reduces savings drastically."
+      },
+      {
+        "id": "hc2",
+        "title": "Baseline problem",
+        "reveal_if_user_asks_any": [
+          "baseline",
+          "compared to what",
+          "current costs",
+          "before and after"
+        ],
+        "content": "Their baseline month had an outage and overtime spike, inflating 'savings' the next quarter."
+      },
+      {
+        "id": "hc3",
+        "title": "Attribution issue",
+        "reveal_if_user_asks_any": [
+          "what else changed",
+          "confounders",
+          "other initiatives",
+          "attribution"
+        ],
+        "content": "They also renegotiated a major vendor contract during the same period."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D3.missing_context",
+      "D3.fact_check_sources",
+      "D4.uncertainty_limits",
+      "D4.verification_checklist"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "asks at least 2 clarifying questions",
+        "includes verification plan",
+        "mentions uncertainty"
+      ]
+    }
+  },
+  {
+    "id": "research.summary.01",
+    "track": "Research/Fact-check",
+    "title": "Summarize + verify a tech article",
+    "brief": "Summarize a long AI announcement for CXOs, then list what you would verify before sharing publicly.",
+    "success_criteria": [
+      "Defines audience + output format",
+      "Asks for sources/citations for key claims",
+      "Produces a verification checklist",
+      "States uncertainties/limitations"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Press-release bias",
+        "reveal_if_user_asks_any": [
+          "independent sources",
+          "credible sources",
+          "verify claims"
+        ],
+        "content": "The announcement is marketing-heavy; third-party benchmarks tell a different story."
+      },
+      {
+        "id": "hc2",
+        "title": "Metric mismatch",
+        "reveal_if_user_asks_any": [
+          "what metric",
+          "how measured",
+          "definition of improvement"
+        ],
+        "content": "They compare a new metric to an old baseline; apples-to-oranges comparison."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D1.constraints_format",
+      "D3.fact_check_sources",
+      "D4.verification_checklist"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "requests sources OR proposes verification steps",
+        "includes checklist",
+        "mentions uncertainties"
+      ]
+    }
+  },
+  {
+    "id": "coding.debug.01",
+    "track": "Coding",
+    "title": "Bug hunt + tests + edge cases",
+    "brief": "You\u2019re given a function and a failing test description. Fix the bug, propose tests, and explain tradeoffs in plain English.",
+    "success_criteria": [
+      "Asks clarifying questions (inputs, expected behavior)",
+      "Mentions at least 2 edge cases",
+      "Includes test cases or how to test",
+      "Does a final review/QA pass"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Empty input rule",
+        "reveal_if_user_asks_any": [
+          "empty",
+          "null",
+          "undefined",
+          "what if input is empty"
+        ],
+        "content": "Empty input should return 0, not throw."
+      },
+      {
+        "id": "hc2",
+        "title": "Performance constraint",
+        "reveal_if_user_asks_any": [
+          "performance",
+          "big input",
+          "complexity",
+          "time complexity"
+        ],
+        "content": "Input can be up to 1 million items, so O(n log n) may be too slow."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D1.constraints_format",
+      "D3.missing_context",
+      "D3.edge_cases",
+      "D4.verification_checklist"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "mentions tests OR test cases",
+        "mentions 2 edge cases",
+        "final QA pass OR checklist"
+      ]
+    }
+  },
+  {
+    "id": "coding.refactor.01",
+    "track": "Coding",
+    "title": "Refactor for clarity + explain decisions",
+    "brief": "Refactor a messy module into clean functions and explain your reasoning, tradeoffs, and how you would validate behavior didn\u2019t change.",
+    "success_criteria": [
+      "Asks for constraints (runtime, style, target environment)",
+      "Requests rationale and tradeoffs",
+      "Defines how to test / validate",
+      "Iterates on output"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Backwards compatibility",
+        "reveal_if_user_asks_any": [
+          "backward",
+          "compatibility",
+          "existing behavior",
+          "breaking change"
+        ],
+        "content": "External callers rely on a quirk: null inputs are tolerated and treated as empty."
+      },
+      {
+        "id": "hc2",
+        "title": "Linting rules",
+        "reveal_if_user_asks_any": [
+          "lint",
+          "formatting rules",
+          "style guide"
+        ],
+        "content": "Project enforces strict linting and forbids default exports."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D2.options_tradeoffs",
+      "D3.ask_reasoning",
+      "D4.verification_checklist"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "mentions validation/testing",
+        "mentions tradeoffs OR rationale",
+        "asks at least 1 clarifying question"
+      ]
+    }
+  },
+  {
+    "id": "writing.memo.01",
+    "track": "Writing",
+    "title": "Executive memo with constraints",
+    "brief": "Draft a 1-page CXO memo on adopting AI agents responsibly. Include risks, governance, and next steps.",
+    "success_criteria": [
+      "Specifies audience, tone, and format",
+      "Requests options/tradeoffs",
+      "Runs reviewer pass",
+      "Adds verification checklist for claims"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Audience preference",
+        "reveal_if_user_asks_any": [
+          "audience",
+          "who is this for",
+          "tone"
+        ],
+        "content": "Your CXO prefers bullet-first memos with a short executive summary at top."
+      },
+      {
+        "id": "hc2",
+        "title": "Regulatory sensitivity",
+        "reveal_if_user_asks_any": [
+          "risk",
+          "compliance",
+          "regulatory"
+        ],
+        "content": "Company operates in a regulated industry; needs audit trails and human approval gates."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D1.constraints_format",
+      "D3.missing_context",
+      "D4.iteration_refinement",
+      "D4.verification_checklist"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "mentions audience OR tone",
+        "includes checklist OR verification plan",
+        "does a review pass"
+      ]
+    }
+  },
+  {
+    "id": "writing.rewrite.01",
+    "track": "Writing",
+    "title": "Rewrite + tighten + keep voice",
+    "brief": "Turn messy notes into a polished blog post while preserving the author\u2019s voice. Add a final critique pass before publishing.",
+    "success_criteria": [
+      "Clarifies voice/tone + target platform",
+      "Iterates and refines",
+      "Requests reviewer pass + uncertainty",
+      "Mentions what to verify (facts/quotes)"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Voice constraint",
+        "reveal_if_user_asks_any": [
+          "voice",
+          "style",
+          "tone",
+          "sound like"
+        ],
+        "content": "The author wants it conversational, playful, and not too formal."
+      },
+      {
+        "id": "hc2",
+        "title": "Fact sensitivity",
+        "reveal_if_user_asks_any": [
+          "fact-check",
+          "verify",
+          "sources"
+        ],
+        "content": "Two stats in the notes are unverified; should not be asserted as facts without sources."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D4.iteration_refinement",
+      "D3.fact_check_sources",
+      "D4.uncertainty_limits"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "mentions voice/tone",
+        "does at least one refinement request",
+        "mentions verification or uncertainty"
+      ]
+    }
+  },
+  {
+    "id": "ops.sop.01",
+    "track": "Planning/Ops",
+    "title": "Create SOP + QA gates",
+    "brief": "Create a simple SOP for a weekly AI-generated newsletter, including QA steps and risk controls.",
+    "success_criteria": [
+      "Breaks into steps",
+      "Includes QA checklist",
+      "Identifies failure modes",
+      "Defines success metrics"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Time constraint",
+        "reveal_if_user_asks_any": [
+          "time constraint",
+          "how long",
+          "deadline"
+        ],
+        "content": "This SOP must fit into 45 minutes total each week."
+      },
+      {
+        "id": "hc2",
+        "title": "Brand constraint",
+        "reveal_if_user_asks_any": [
+          "brand",
+          "tone",
+          "style guide"
+        ],
+        "content": "Must follow a strict brand voice and include a disclaimer for AI-generated summaries."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D2.steps_plan",
+      "D3.edge_cases",
+      "D4.verification_checklist",
+      "D1.goal_clarity"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "includes steps",
+        "includes checklist",
+        "mentions success metric(s)"
+      ]
+    }
+  },
+  {
+    "id": "ops.plan.01",
+    "track": "Planning/Ops",
+    "title": "Weekly plan under constraints",
+    "brief": "Plan a 10-hour/week consulting schedule that balances delivery, learning, and content creation. Include contingency.",
+    "success_criteria": [
+      "Clarifies constraints and priorities",
+      "Produces a structured plan",
+      "Includes tradeoffs and contingency",
+      "Does a review pass"
+    ],
+    "hidden_context_cards": [
+      {
+        "id": "hc1",
+        "title": "Non-negotiables",
+        "reveal_if_user_asks_any": [
+          "non-negotiable",
+          "must include",
+          "constraints"
+        ],
+        "content": "There are two fixed commitments: one client call + one content publish slot weekly."
+      },
+      {
+        "id": "hc2",
+        "title": "Energy pattern",
+        "reveal_if_user_asks_any": [
+          "when are you most productive",
+          "energy",
+          "best time"
+        ],
+        "content": "Deep work is best in mornings; afternoons for meetings and editing."
+      }
+    ],
+    "rubric_focus_behavior_ids": [
+      "D1.constraints_format",
+      "D2.options_tradeoffs",
+      "D4.verification_checklist"
+    ],
+    "completion_check": {
+      "type": "rule_based",
+      "requires": [
+        "asks constraints OR priorities",
+        "outputs structured plan",
+        "includes contingency OR tradeoffs"
+      ]
+    }
+  }
+]
